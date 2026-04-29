@@ -1,0 +1,33 @@
+Database Type and Version (Oracle)
+Platform: PortSwigger Web Security Academy
+
+Difficulty: Practitioner
+
+Status: Solved
+
+Objective
+Display the database version string by injecting into the product category filter.
+
+Vulnerability
+The application is vulnerable to UNION-based SQL injection. However, Oracle databases have two strict requirements that make this a "Practitioner" level challenge:
+
+Every SELECT statement must include a table name (using the DUAL table for testing).
+
+The UNION columns must match the data types of the original query.
+
+Payload Used
+First, determine the number of columns (found to be 2) and their types (both string). Then, use the Oracle-specific version table:
+
+'+UNION+SELECT+BANNER,+NULL+FROM+v$version--
+
+Why It Works
+v$version: This is a built-in dynamic performance view in Oracle that contains the database version details.
+
+BANNER: This is the specific column name within v$version that holds the version string.
+
+--: The comment character in Oracle used to nullify the rest of the original SQL query.
+
+Impact
+Information Disclosure (Database finger-printing).
+
+Allows an attacker to tailor further exploits based on known vulnerabilities for that specific Oracle version.
