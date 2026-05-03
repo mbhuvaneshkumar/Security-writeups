@@ -58,11 +58,10 @@ Entered this payload in the comment box:
 
 
 
-**```javascript**
+**--javascript**
 
 **<script>alert(1)</script>**
 
-**```**
 
 
 
