@@ -1,4 +1,4 @@
-````
+
 # Windows Brute-Force Detection with Splunk
 
 ## Overview
